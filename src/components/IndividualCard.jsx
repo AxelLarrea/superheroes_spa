@@ -10,7 +10,7 @@ const IndividualCard = ({card}) => {
     return (
         <>
             <div className="card">
-                <Link to="/" >
+                <Link to={`/personaje/${nombre_pj}`}>
                     <img src={urls} alt="si"></img>
                 </Link>
                 

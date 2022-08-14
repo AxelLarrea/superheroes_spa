@@ -22,9 +22,6 @@ const Header = () => {
         personajes.setChars(resultado);
     }
 
-    console.log(personajes.characters);
-    console.log('first:', personajes.chars);
-
     return (
         <div className="header">
             <Link to="/">

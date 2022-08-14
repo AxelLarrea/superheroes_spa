@@ -106,3 +106,21 @@ body {
 .card a {
     margin: auto;
 }
+
+
+/* Detalle de personaje */
+
+.img-pj {
+    width: 25%;
+    height: 350px;
+}
+
+.img-pj img {
+    width: 80%;
+    height: 100%;
+}
+
+.logo img {
+    
+    height: 100px;
+}
