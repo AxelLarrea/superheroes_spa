@@ -18,7 +18,7 @@ const IndividualCard = ({card}) => {
                     nombre !== nombre_pj ? <p>{nombre_pj} ({nombre})</p> : <p>{nombre}</p>
                 }
                 
-                <p>{biografia}</p>
+                <p>{biografia.slice(0, 100)}...</p>
             </div>
         </>
     );
