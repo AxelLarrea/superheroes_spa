@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-
-
 
 const FormPj = ({text, pj}) => {
-
-    const navigate = useNavigate();
 
     const [personaje, setPersonaje] = useState({
         nombre: "",
