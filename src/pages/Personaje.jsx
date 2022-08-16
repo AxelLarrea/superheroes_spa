@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import FormPj from '../components/FormPj';
 import Header from '../components/Header';
 
 const Personaje = () => {
 
     const param = useParams();
 
-    const [personaje, setPersonaje] = useState([]);
+    const [personaje, setPersonaje] = useState({});
+
+    //Controlar si está editando un personaje
+    const [form, setForm] = useState(false);
     
     const {logo} = personaje;
     const {nombre_pj} = personaje;
@@ -17,16 +21,25 @@ const Personaje = () => {
     const {equipamiento} = personaje;
     const {casa} = personaje;
 
-    const getPersonaje = async () => {
-        const response = await fetch(`http://localhost:4000/individual/${param.nombre}`);
-        const data = await response.json();
-        setPersonaje(data[0]);
-    };
 
+    //Controlador click botón eliminar
+    const handleClickEliminar = async () => {
+        window.location.href = '/';
+        await fetch(`http://localhost:4000/eliminar/${nombre_pj}`, {
+            method: "DELETE",
+            headers: {"Content-Type": "application/json"}
+        });
+    }
     
     useEffect(() => {
+        const getPersonaje = async () => {
+            const response = await fetch(`http://localhost:4000/individual/${param.nombre}`);
+            const data = await response.json();
+            setPersonaje(data[0]);
+        };
+
         getPersonaje();
-    }, []);
+    }, [param.nombre]);
 
     return (
         <>
@@ -34,6 +47,10 @@ const Personaje = () => {
             <div className="detail-container">
                 <div className="img-pj">
                     <img src={urls} alt="psj"></img>
+                    <div className="buttons-container">
+                        <button className="btn-pj" onClick={() => setForm(!form)}>Editar</button>
+                        <button className="btn-pj" onClick={handleClickEliminar}>Eliminar</button>
+                    </div>
                 </div>
                 
                 <div className="info-container">
@@ -48,7 +65,10 @@ const Personaje = () => {
                         <h3>Casa a la que pertenece: {casa}</h3>
                     </div>
                 </div>
+
+                {form && <FormPj text="Editar" pj={param.nombre}/>}
             </div>
+           
             <h2 className="title">Biografía:</h2>
             <p className="biografia">{biografia}</p>
             <hr></hr>
