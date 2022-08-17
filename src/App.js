@@ -10,6 +10,7 @@ import Marvel from './pages/Marvel';
 import DC from './pages/DC';
 import Personaje from './pages/Personaje';
 import PjsProvider from './components/PjsProvider';
+import AgregarPersonaje from './pages/AgregarPersonaje';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/Marvel" element={<Marvel/>}/>
           <Route path="/DC" element={<DC/>}/>
           <Route path="/personaje/:nombre" element={<Personaje/>}/>
+          <Route path="/agregar" element={<AgregarPersonaje/>}/>
 
         </Routes>
       </Router>

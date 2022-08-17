@@ -38,7 +38,7 @@ const Header = () => {
                     DC
                 </Link>
             </div>
-
+            
             <div className="search-bar">
                 <input type="text" placeholder="Nombre del personaje" onChange={handleInputChange}></input>
             </div>

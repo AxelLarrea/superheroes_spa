@@ -7,11 +7,12 @@ const IndividualCard = ({card}) => {
     const { nombre_pj } = card;
     const { biografia } = card;
     const { urls } = card;
+    
     return (
         <>
             <div className="card">
                 <Link to={`/personaje/${nombre_pj}`}>
-                    <img src={urls} alt="si"></img>
+                    {urls.length === 1 ? <img src={urls} alt="si"></img> : <img src={urls[0]} alt="si"></img>}
                 </Link>
                 
                 { 

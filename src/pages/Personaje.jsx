@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import FormPj from '../components/FormPj';
 import Header from '../components/Header';
+import Carrousel from '../components/Carrousel';
 
 const Personaje = () => {
 
@@ -16,7 +17,6 @@ const Personaje = () => {
     const {nombre_pj} = personaje;
     const {nombre} = personaje;
     const {biografia} = personaje;
-    const {urls} = personaje;
     const {anio_aparicion} = personaje;
     const {equipamiento} = personaje;
     const {casa} = personaje;
@@ -45,8 +45,9 @@ const Personaje = () => {
         <>
             <Header/>
             <div className="detail-container">
+
                 <div className="img-pj">
-                    <img src={urls} alt="psj"></img>
+                    <Carrousel/>
                     <div className="buttons-container">
                         <button className="btn-pj" onClick={() => setForm(!form)}>Editar</button>
                         <button className="btn-pj" onClick={handleClickEliminar}>Eliminar</button>
