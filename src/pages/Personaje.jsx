@@ -1,14 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import FormPj from '../components/FormPj';
 import Header from '../components/Header';
 import Carrousel from '../components/Carrousel';
+import Aviso from '../components/Aviso';
+import { PjsContext } from '../components/PjsProvider';
 
 const Personaje = () => {
+
+    const alert = useContext(PjsContext);
 
     const param = useParams();
 
     const [personaje, setPersonaje] = useState({});
+
+    //Controlar alerta
+    const [alerta, setAlerta] = useState(false);
 
     //Controlar si está editando un personaje
     const [form, setForm] = useState(false);
@@ -20,16 +27,19 @@ const Personaje = () => {
     const {anio_aparicion} = personaje;
     const {equipamiento} = personaje;
     const {casa} = personaje;
+    const {urls} = personaje;
 
 
     //Controlador click botón eliminar
     const handleClickEliminar = async () => {
-        window.location.href = '/';
+        setAlerta(true);
         await fetch(`http://localhost:4000/eliminar/${nombre_pj}`, {
             method: "DELETE",
             headers: {"Content-Type": "application/json"}
         });
     }
+
+    console.log('Links imagenes:', urls);
     
     useEffect(() => {
         const getPersonaje = async () => {
@@ -44,8 +54,11 @@ const Personaje = () => {
     return (
         <>
             <Header/>
-            <div className="detail-container">
 
+            {alerta && <Aviso text='Personaje eliminado con exito' alerta={alerta} setAlerta={setAlerta}/>}
+            {alert.alerta3 && <Aviso text='Personaje editado con exito' alerta={alert.alerta3} setAlerta={alert.setAlerta3} editing={!alert.editing} setEditing={alert.setEditing}/>}
+            
+            <div className="detail-container">
                 <div className="img-pj">
                     <Carrousel/>
                     <div className="buttons-container">
@@ -53,7 +66,7 @@ const Personaje = () => {
                         <button className="btn-pj" onClick={handleClickEliminar}>Eliminar</button>
                     </div>
                 </div>
-                
+
                 <div className="info-container">
                     <div className="logo">
                         <img src={logo} alt="img"></img>
@@ -67,9 +80,9 @@ const Personaje = () => {
                     </div>
                 </div>
 
-                {form && <FormPj text="Editar" pj={param.nombre}/>}
+                {form && <FormPj text="Editar" pj={param.nombre} form={form} setForm={setForm}/>}
             </div>
-           
+            
             <h2 className="title">Biografía:</h2>
             <p className="biografia">{biografia}</p>
             <hr></hr>

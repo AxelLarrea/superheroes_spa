@@ -16,7 +16,7 @@ const IndividualCard = ({card}) => {
                 </Link>
                 
                 { 
-                    nombre !== nombre_pj ? <p>{nombre_pj} ({nombre})</p> : <p>{nombre}</p>
+                    nombre !== nombre_pj ? <b><p>{nombre_pj} ({nombre})</p></b> : <b><p>{nombre}</p></b>
                 }
                 
                 <p>{biografia.slice(0, 100)}...</p>
