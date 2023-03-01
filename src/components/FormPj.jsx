@@ -42,7 +42,7 @@ const FormPj = ({text, pj}) => {
 
         if (location.pathname === '/agregar'){
             //Verificamos si el personaje a agregar ya existe
-            const response = await fetch(`http://localhost:4000/individual/${personaje.nombre_pj}`);
+            const response = await fetch(`http://localhost:5000/individual/${personaje.nombre_pj}`);
             const data = await response.json();
             console.log(data[0]);
 
@@ -50,7 +50,7 @@ const FormPj = ({text, pj}) => {
                 setAlerta(true);
             } else{
                 setAlerta2(true);
-                await fetch(`http://localhost:4000/agregar`,{
+                await fetch(`http://localhost:5000/agregar`,{
                     method: "POST",
                     body: JSON.stringify(personaje),
                     headers: {"Content-Type": "application/json"}
@@ -60,7 +60,7 @@ const FormPj = ({text, pj}) => {
         } else{
             setEditing(true);
             alert.setAlerta3(true);
-            await fetch(`http://localhost:4000/actualizar/${pj}`,{
+            await fetch(`http://localhost:5000/actualizar/${pj}`,{
                 method: "PUT",
                 body: JSON.stringify(personaje),
                 headers: {"Content-Type": "application/json"}
@@ -74,7 +74,7 @@ const FormPj = ({text, pj}) => {
 
         if(location.pathname !== '/agregar'){
             const getPersonaje = async () => {
-                const response = await fetch(`http://localhost:4000/individual/${pj}`);
+                const response = await fetch(`http://localhost:5000/individual/${pj}`);
                 const data = await response.json();
                 setPersonaje(data[0]);
             };

@@ -33,7 +33,7 @@ const Personaje = () => {
     //Controlador click botón eliminar
     const handleClickEliminar = async () => {
         setAlerta(true);
-        await fetch(`http://localhost:4000/eliminar/${nombre_pj}`, {
+        await fetch(`http://localhost:5000/eliminar/${nombre_pj}`, {
             method: "DELETE",
             headers: {"Content-Type": "application/json"}
         });
@@ -43,7 +43,7 @@ const Personaje = () => {
     
     useEffect(() => {
         const getPersonaje = async () => {
-            const response = await fetch(`http://localhost:4000/individual/${param.nombre}`);
+            const response = await fetch(`http://localhost:5000/individual/${param.nombre}`);
             const data = await response.json();
             setPersonaje(data[0]);
         };

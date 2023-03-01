@@ -12,7 +12,7 @@ const Cards = () => {
     let pjs2 = personajes.chars;
 
     const getPersonajes = async () => {
-        const response = await fetch("http://localhost:4000/todos");
+        const response = await fetch("http://localhost:5000/todos");
         const data = await response.json();
         personajes.setChars(data);
         personajes.setCharacters(data);

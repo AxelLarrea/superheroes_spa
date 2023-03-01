@@ -36,7 +36,7 @@ const Carrousel = () => {
 
     useEffect(() => {
         const getPersonaje = async () => {
-            const response = await fetch(`http://localhost:4000/individual/${param.nombre}`);
+            const response = await fetch(`http://localhost:5000/individual/${param.nombre}`);
             const data = await response.json();
             setData(data[0].urls);
         };
